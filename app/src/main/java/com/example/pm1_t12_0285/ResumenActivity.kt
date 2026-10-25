@@ -42,7 +42,8 @@ class ResumenActivity : AppCompatActivity() {
         val top5 = productoDao.obtenerTop5PorValor()
         val adapterTop5 = ProductoAdapter(
             top5,
-            showActions = false
+            showActions = false,
+            showTotalValue = true
         )
         recyclerViewTop5.adapter = adapterTop5
 

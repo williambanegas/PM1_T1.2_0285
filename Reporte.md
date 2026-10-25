@@ -32,7 +32,7 @@ Se ha desarrollado exitosamente la aplicación Android en Kotlin para la gestió
    - Registro automático de fecha y hora.
 3. **Resumen y Estadísticas**:
    - Cálculo y visualización del valor total del inventario (`precio * stock`).
-   - Top 5 productos con mayor valor en el inventario.
+   - Top 5 productos con mayor valor en el inventario, mostrando el valor total individual en Lps. con letras de color verde para diferenciarlos.
    - Panel de alertas visuales para productos con stock menor o igual al mínimo predefinido (sin botones de modificar/eliminar).
 4. **Aspectos Adicionales**:
    - Alerta visual en listas (color rojo claro) para productos con stock bajo o agotado.

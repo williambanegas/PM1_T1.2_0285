@@ -8,10 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pm1_t12_0285.R
 import com.example.pm1_t12_0285.model.Producto
+import java.util.Locale
 
 class ProductoAdapter(
     private var productos: List<Producto>,
     private val showActions: Boolean = true,
+    private val showTotalValue: Boolean = false,
     private val onItemClick: (Producto) -> Unit = {},
     private val onDeleteClick: (Producto) -> Unit = {}
 ) : RecyclerView.Adapter<ProductoAdapter.ProductoViewHolder>() {
@@ -19,6 +21,7 @@ class ProductoAdapter(
     class ProductoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvNombre: TextView = view.findViewById(R.id.tvNombreProducto)
         val tvPrecio: TextView = view.findViewById(R.id.tvPrecioProducto)
+        val tvTotalValor: TextView = view.findViewById(R.id.tvTotalValor)
         val tvStock: TextView = view.findViewById(R.id.tvStockProducto)
         val tvCodigo: TextView = view.findViewById(R.id.tvCodigoBarraProducto)
         val btnEditar: View = view.findViewById(R.id.btnEditarProducto)
@@ -33,9 +36,17 @@ class ProductoAdapter(
     override fun onBindViewHolder(holder: ProductoViewHolder, position: Int) {
         val producto = productos[position]
         holder.tvNombre.text = producto.nombre
-        holder.tvPrecio.text = "Precio: Lps. ${String.format("%.2f", producto.precio)}"
+        holder.tvPrecio.text = "Precio: Lps. ${String.format(Locale.getDefault(), "%.2f", producto.precio)}"
         holder.tvStock.text = "Stock: ${producto.stock} (Min: ${producto.stockMinimo})"
         holder.tvCodigo.text = "Código: ${producto.codigoBarra.ifEmpty { "N/A" }}"
+
+        if (showTotalValue) {
+            val totalValor = producto.precio * producto.stock
+            holder.tvTotalValor.text = "Total: Lps. ${String.format(Locale.getDefault(), "%.2f", totalValor)}"
+            holder.tvTotalValor.visibility = View.VISIBLE
+        } else {
+            holder.tvTotalValor.visibility = View.GONE
+        }
 
         // Alerta visual si stock <= stockMinimo
         if (producto.stock <= producto.stockMinimo) {
