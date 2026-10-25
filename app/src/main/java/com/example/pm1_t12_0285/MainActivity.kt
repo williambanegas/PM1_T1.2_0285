@@ -1,20 +1,30 @@
 package com.example.pm1_t12_0285
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val btnProductos = findViewById<Button>(R.id.btnProductos)
+        val btnMovimientos = findViewById<Button>(R.id.btnMovimientos)
+        val btnResumen = findViewById<Button>(R.id.btnResumen)
+
+        btnProductos.setOnClickListener {
+            startActivity(Intent(this, ProductoActivity::class.java))
+        }
+
+        btnMovimientos.setOnClickListener {
+            startActivity(Intent(this, MovimientoActivity::class.java))
+        }
+
+        btnResumen.setOnClickListener {
+            startActivity(Intent(this, ResumenActivity::class.java))
         }
     }
 }

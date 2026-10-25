@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ProductoActivity" android:exported="false" />
+        <activity android:name=".ProductoFormActivity" android:exported="false" />
+        <activity android:name=".MovimientoActivity" android:exported="false" />
+        <activity android:name=".MovimientoFormActivity" android:exported="false" />
+        <activity android:name=".ResumenActivity" android:exported="false" />
     </application>
 
 </manifest>
